@@ -1,0 +1,71 @@
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        // Part 2 (a): Creating a set of user instances
+        GymUser user1 = new GymUser("Alice", "Female", 25, 1.65, 55);
+        GymUser user2 = new GymUser("Bob", "Male", 30, 1.80, 85);
+        GymUser user3 = new GymUser("Charlie", "Male", 20, 1.75, 70);
+        GymUser user4 = new GymUser("Diana", "Female", 22, 1.60, 50);
+        GymUser user5 = new GymUser("Eve", "Female", 35, 1.70, 90);
+
+        // Storing instances in an array-like container (ArrayList)
+        ArrayList<GymUser> users = new ArrayList<>();
+        users.add(user1);
+        users.add(user2);
+        users.add(user3);
+        users.add(user4);
+        users.add(user5);
+
+        // Printing part 2 tasks
+
+        // Part 2 (a): Obtain a textual and legible representation for each user
+        System.out.println("Textual Representation of Each User:");
+        for (GymUser user : users) {
+            System.out.println(user);
+        }
+
+        // Part 2 (b): Obtain the name, BMI value, and degree of obesity for each user
+        System.out.println("\nBMI and Obesity Degree for Each User:");
+        for (GymUser user : users) {
+            System.out.println(user.getName() + " - BMI: " + user.calculateBMI() + " - Obesity Degree: " + user.obesityDegree());
+        }
+
+        // Part 2 (c): Obtain the name and obesity degree of each user who is not "Healthy"
+        System.out.println("\nUsers who are not 'Healthy':");
+        for (GymUser user : users) {
+            if (!user.isHealthy()) {
+                System.out.println(user.getName() + " - Obesity Degree: " + user.obesityDegree());
+            }
+        }
+
+        // Part 2 (d): Changing BMI reference values of the obesity degree (not applicable with static values; hypothetical if allowed)
+
+        // Part 2 (e): Change the age value of one user to the age of another
+        System.out.println("\nChanging Charlie's age to Alice's age:");
+        user3.setAge(user1.getAge());
+        System.out.println("Charlie's new age: " + user3.getAge());
+
+        // Part 2 (f): Check which user is younger (Alice vs. Bob)
+        System.out.println("\nChecking who is younger between Alice and Bob:");
+        GymUser youngerUser = GymUser.youngerUser(user1, user2);
+        if (youngerUser != null) {
+            System.out.println("The younger user is: " + youngerUser.getName());
+        } else {
+            System.out.println("Alice and Bob are the same age.");
+        }
+
+        // Part 2 (g): Search for a user identified by name and obtain all information
+        System.out.println("\nSearching for user named 'Diana':");
+        String searchName = "Diana";
+        for (GymUser user : users) {
+            if (user.getName().equals(searchName)) {
+                System.out.println("Found user: " + user);
+                break;
+            }
+        }
+
+        // Part 2 (h): Display total number of users created
+        System.out.println("\nTotal number of users created: " + GymUser.getUserCount());
+    }
+}
